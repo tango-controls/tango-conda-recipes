@@ -4,7 +4,7 @@ before_script:
 build:
   stage: build
   script:
-    - cd `git name-rev --name-only HEAD`
+    - cd `git rev-parse --abbrev-ref HEAD`
     - conda build . --prefix-length=80 --output-folder=../dist/ --python=2.7
     #- conda build . --prefix-length=80 --output-folder=../dist/ --python=3.5
     #- conda build . --prefix-length=80 --output-folder=../dist/ --python=3.6
