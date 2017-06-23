@@ -5,8 +5,8 @@ build:
   stage: build
   script:
     - cd $CI_COMMIT_REF_NAME
-    - conda build . --prefix-length=80 --output-folder=../dist/ --python=2.7
-    # - conda build . --prefix-length=80 --output-folder=../dist/ --python=3.6
+    - conda build . --prefix-length=80 --output-folder=../dist/ --python=2.7 --channel=file://conda/bcu
+    # - conda build . --prefix-length=80 --output-folder=../dist/ --python=3.6 --channel=file://conda/bcu
   artifacts:
     paths:
       - dist/
@@ -16,5 +16,5 @@ deploy:
   dependencies:
     - build
   script:
-    - mv -f dist/* /conda/bcu/linux-64/
-    - conda index  /conda/bcu/linux-64/
+    - mv -f dist/* /conda/linux-64/
+    - conda index  /conda/linux-64/
