@@ -5,9 +5,9 @@ build:
   stage: build
   script:
     - cd `git name-rev --name-only HEAD`
-    - conda build . --prefix-length=80 --output-folder=dist/ --python=2.7
-    - conda build . --prefix-length=80 --output-folder=dist/ --python=3.5
-    - conda build . --prefix-length=80 --output-folder=dist/ --python=3.6
+    - conda build . --prefix-length=80 --output-folder=../dist/ --python=2.7
+    #- conda build . --prefix-length=80 --output-folder=../dist/ --python=3.5
+    #- conda build . --prefix-length=80 --output-folder=../dist/ --python=3.6
   artifacts:
     paths:
       - dist/
