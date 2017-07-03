@@ -10,6 +10,8 @@ build:
   artifacts:
     paths:
       - dist/
+  except:
+    - master
 
 deploy:
   stage: deploy
@@ -18,3 +20,5 @@ deploy:
   script:
     - mv -f dist/linux-64/* /conda/linux-64/
     - conda index /conda/linux-64/
+  except:
+    - master
