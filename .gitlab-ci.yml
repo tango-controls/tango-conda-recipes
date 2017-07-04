@@ -18,7 +18,7 @@ deploy:
   dependencies:
     - build
   script:
-    - mv -f dist/linux-64/* /conda/linux-64/
+    - mv -f dist/linux-64/*.tar.bz2 /conda/linux-64/
     - conda index /conda/linux-64/
   except:
     - master
