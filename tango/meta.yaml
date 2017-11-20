@@ -11,7 +11,6 @@ source:
 requirements:
   build:
     - libtool
-    - gcc
     - omniorb
     - zeromq
     - zlib
