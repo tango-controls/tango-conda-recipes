@@ -11,14 +11,14 @@ source:
 requirements:
   build:
     - libtool
+    - {{ compiler('cxx') }}
+  host:
     - omniorb
     - zeromq
     - zlib
-    - python
   run:
-    - libgcc
-    - omniorb
-    - zeromq
+    - pin_compatible('omniorb')
+    - pin_compatible('zeromq')
 
 about:
   home: http://www.tango-controls.org
