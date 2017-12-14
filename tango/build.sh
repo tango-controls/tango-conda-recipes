@@ -8,7 +8,9 @@ export EGREP=$(which egrep)
   --disable-static \
   --disable-java \
   --disable-dserver \
-  --disable-dbcreate
+  --disable-dbcreate \
+  CXXFLAGS="$CXXFLAGS -std=c++0x"
+
 
 make -j8
 make install
