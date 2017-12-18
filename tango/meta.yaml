@@ -17,8 +17,8 @@ requirements:
     - zeromq
     - zlib
   run:
-    - pin_compatible('omniorb')
-    - pin_compatible('zeromq')
+    - {{ pin_compatible('omniorb') }}
+    - {{ pin_compatible('zeromq') }}
 
 about:
   home: http://www.tango-controls.org
