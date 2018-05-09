@@ -1,5 +1,5 @@
 before_script:
-  - source /opt/miniconda/bin/activate
+  - source /opt/conda/bin/activate
 
 build:
   stage: build
