@@ -1,3 +1,5 @@
+image: registry.gitlab.com/tiagocoutinho/tango-conda-recipes:build
+
 before_script:
   - source /opt/conda/bin/activate
 
