@@ -15,6 +15,6 @@ build:
 deploy:
   stage: deploy
   script:
-    - anaconda upload --channel=tango-controls --token=$ANACONDA_TOKEN dist/linux-64/*.tar.bz2
+    - anaconda -t $ANACONDA_TOKEN upload dist/linux-64/*.tar.bz2
   only:
     - master
