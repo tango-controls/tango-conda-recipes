@@ -7,7 +7,7 @@ build:
   stage: build
   script:
     - cd tango
-    - conda build --output-folder=../dist/ .
+    - conda build -b --output-folder=../dist/ .
   artifacts:
     paths:
       - dist/
