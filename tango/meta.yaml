@@ -2,7 +2,7 @@
 
 package:
   name: tango
-  version: {{ version }}
+  version: "9.3.2alpha.1"
 
 source:
   url: https://sourceforge.net/projects/tango-cs/files/tango-{{ version }}.tar.gz
