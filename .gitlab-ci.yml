@@ -11,16 +11,10 @@ build:
   artifacts:
     paths:
       - dist/
-  except:
-    - master
 
 deploy:
   stage: deploy
   script:
-    - cd tango
-    - conda build --token $ANACONDA_TOKEN --output-folder=../dist/ .
-  artifacts:
-    paths:
-      - dist/
+    - anaconda upload --channel=tango-controls --token=$ANACONDA_TOKEN dist/linux-64/*.tar.bz2
   only:
     - master
