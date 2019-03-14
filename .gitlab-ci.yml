@@ -5,11 +5,11 @@ build:
   stage: build
   script:
     - cd $CI_COMMIT_REF_NAME
-    - conda build . --output-folder=../dist/ --channel=file://conda
+    - conda build . --output-folder=../dist/
   artifacts:
     paths:
       - dist/
-  except:
+  only:
     - master
 
 deploy:
@@ -19,5 +19,5 @@ deploy:
   script:
     - mv -f dist/linux-64/*.tar.bz2 /conda/linux-64/
     - conda index /conda/linux-64/
-  except:
+  only:
     - master
