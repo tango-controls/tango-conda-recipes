@@ -6,20 +6,21 @@ before_script:
 build:
   stage: build
   script:
-    - cd $CI_COMMIT_REF_NAME
-    - conda build . --output-folder=../dist/
+    - cd tango
+    - conda build --output-folder=../dist/ .
   artifacts:
     paths:
       - dist/
-  only:
+  except:
     - master
 
 deploy:
   stage: deploy
-  dependencies:
-    - build
   script:
-    - mv -f dist/linux-64/*.tar.bz2 /conda/linux-64/
-    - conda index /conda/linux-64/
+    - cd tango
+    - conda build --token $ANACONDA_TOKEN --output-folder=../dist/ .
+  artifacts:
+    paths:
+      - dist/
   only:
     - master
