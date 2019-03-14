@@ -1,25 +1,22 @@
 image: registry.gitlab.com/tiagocoutinho/tango-conda-recipes:build
 
 before_script:
-  - source /opt/conda/bin/activate
+  - echo "Updating CI tool"
+  - conda install -qy -c msarahan conda-gitlab-ci
+  - conda update -qy -c msarahan conda-gitlab-ci
 
-build:
-  stage: build
+determine_builds:
   script:
-    - cd $CI_COMMIT_REF_NAME
-    - conda build . --output-folder=../dist/
-  artifacts:
-    paths:
-      - dist/
-  only:
+    - cgci .
+
+build_only:
+  script:
+    - if [ -n "$BUILD_RECIPE" ]; then conda build -b --prefix-length=80 $TEST_MODE $BUILD_RECIPE -c tango-controls
+  except:
     - master
 
 deploy:
-  stage: deploy
-  dependencies:
-    - build
   script:
-    - mv -f dist/linux-64/*.tar.bz2 /conda/linux-64/
-    - conda index /conda/linux-64/
+    - if [ -n "$BUILD_RECIPE" ]; then conda build --prefix-length=80 --token $ANACONDA_TOKEN $TEST_MODE $BUILD_RECIPE -c tango-controls
   only:
     - master
