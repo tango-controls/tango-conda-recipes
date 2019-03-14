@@ -1,5 +1,4 @@
-{% set version = "9.2.5a" %}
-{% set sha256 = "8c55c27d027d013438056821bc36f5b1b9c22028ccc4ef713bb795c1ee827619" %}
+{% set version = "9.3.2-alpha.1" %}
 
 package:
   name: tango
@@ -7,7 +6,7 @@ package:
 
 source:
   url: https://sourceforge.net/projects/tango-cs/files/tango-{{ version }}.tar.gz
-
+  url: https://github.com/tango-controls/TangoSourceDistribution/releases/download/{{ version }}/tango-{{ version }}.tar.gz
 requirements:
   build:
     - libtool
