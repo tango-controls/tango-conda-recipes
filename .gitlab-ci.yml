@@ -7,7 +7,7 @@ build:
   stage: build
   script:
     - cd tango
-    - conda build -b --output-folder=../dist/ .
+    - conda build -b --prefix-length=60 --output-folder=../dist/ .
   artifacts:
     paths:
       - dist/
@@ -15,6 +15,6 @@ build:
 deploy:
   stage: deploy
   script:
-    - anaconda -t $ANACONDA_TOKEN upload dist/linux-64/*.tar.bz2
+    - anaconda --token="$ANACONDA_TOKEN" upload dist/linux-64/*.tar.bz2
   only:
     - master
