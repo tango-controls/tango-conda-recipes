@@ -1,0 +1,51 @@
+name: Build conda packages
+# This workflow is triggered on pushes to the repository.
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build tango-idl and cpptango conda packages
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+
+    steps:
+      # This step check out a copy of your repository
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      # Display OS release
+      - name: Display os-release
+        run: cat /etc/os-release
+      # Setup miniconda
+      - name: Setup miniconda
+        uses: goanpeca/setup-miniconda@v1
+        with:
+          auto-update-conda: true
+          activate-environment: conda_pkg_build_env
+      - name: install conda-build
+        shell: bash -l {0}
+        run: |
+          conda info
+          conda install conda-build
+          conda config --add channels conda-forge
+      - name: install conda-verify
+        run: conda install conda-verify
+      - name: Build tango-idl Conda package
+        shell: bash -l {0}
+        run: |
+          conda build $GITHUB_WORKSPACE/conda-recipes/tango-idl --output-folder=$GITHUB_WORKSPACE/dist-idl
+      - name: Build cpptango Conda package
+        shell: bash -l {0}
+        run: |
+          conda build $GITHUB_WORKSPACE/conda-recipes/cpptango --output-folder=$GITHUB_WORKSPACE/dist-cpptango
+      - name: Prepare artifacts
+        shell: bash -l {0}
+        run: |
+          mkdir $GITHUB_WORKSPACE/artifacts
+          cp $GITHUB_WORKSPACE/dist-idl/linux-64/tango-idl*.bz2 $GITHUB_WORKSPACE/artifacts/
+          cp $GITHUB_WORKSPACE/dist-cpptango/linux-64/cpptango*.bz2 $GITHUB_WORKSPACE/artifacts/
+          ls -l $GITHUB_WORKSPACE/artifacts
+      - name: Upload Conda Packages as artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: tango-idl-and-cpptango-conda-packages
+          path: artifacts
