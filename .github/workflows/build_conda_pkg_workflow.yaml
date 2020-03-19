@@ -32,11 +32,11 @@ jobs:
       - name: Build tango-idl Conda package
         shell: bash -l {0}
         run: |
-          conda build $GITHUB_WORKSPACE/conda-recipes/tango-idl --output-folder=$GITHUB_WORKSPACE/dist-idl
+          conda build $GITHUB_WORKSPACE/tango-idl --output-folder=$GITHUB_WORKSPACE/dist-idl
       - name: Build cpptango Conda package
         shell: bash -l {0}
         run: |
-          conda build $GITHUB_WORKSPACE/conda-recipes/cpptango --output-folder=$GITHUB_WORKSPACE/dist-cpptango
+          conda build $GITHUB_WORKSPACE/cpptango --output-folder=$GITHUB_WORKSPACE/dist-cpptango
       - name: Prepare artifacts
         shell: bash -l {0}
         run: |
