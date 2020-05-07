@@ -44,8 +44,14 @@ jobs:
           cp $GITHUB_WORKSPACE/dist-idl/linux-64/tango-idl*.bz2 $GITHUB_WORKSPACE/artifacts/
           cp $GITHUB_WORKSPACE/dist-cpptango/linux-64/cpptango*.bz2 $GITHUB_WORKSPACE/artifacts/
           ls -l $GITHUB_WORKSPACE/artifacts
-      - name: Upload Conda Packages as artifact
-        uses: actions/upload-artifact@v1
+      - name: Upload tango-idl Conda Package as artifact
+        uses: actions/upload-artifact@v2
         with:
-          name: tango-idl-and-cpptango-conda-packages
-          path: artifacts
+          name: tango-idl-linux-64-conda-package
+          path: artifacts/tango-idl*.bz2
+      - name: Upload cpptango Conda Package as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: cpptango-idl-linux-64-conda-package
+          path: artifacts/cpptango*.bz2
+
