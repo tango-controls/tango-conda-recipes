@@ -8,5 +8,6 @@ cmake -DCMAKE_BUILD_TYPE=Debug \
       -DIDL_BASE=$PREFIX \
       -DBUILD_TESTING=OFF \
       ..
-
-make -j `nproc` install
+      
+export MAKEFLAGS="-j `nproc`"
+cmake --build . --target install

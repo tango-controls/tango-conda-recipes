@@ -1,5 +1,5 @@
-mkdir build-cmake
-cd build-cmake
+mkdir build
+cd build
 
 cmake -DCMAKE_INSTALL_PREFIX=$PREFIX ..
-make install
+cmake --build . --target install
