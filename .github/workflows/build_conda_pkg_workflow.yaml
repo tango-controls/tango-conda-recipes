@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: Build tango-idl and cpptango conda packages
+    name: Build tango-idl, cpptango and tango-test conda packages
     # This job runs on Linux
     runs-on: ubuntu-latest
 
@@ -21,37 +21,37 @@ jobs:
         with:
           auto-update-conda: true
           activate-environment: conda_pkg_build_env
-      - name: install conda-build
+      - name: install conda-build and conda-verify
         shell: bash -l {0}
         run: |
           conda info
           conda install conda-build
+          conda install conda-verify
           conda config --add channels conda-forge
-      - name: install conda-verify
-        run: conda install conda-verify
       - name: Build tango-idl Conda package
         shell: bash -l {0}
         run: |
-          conda build $GITHUB_WORKSPACE/tango-idl --output-folder=$GITHUB_WORKSPACE/dist-idl
-      - name: Build cpptango Conda package
-        shell: bash -l {0}
-        run: |
-          conda build $GITHUB_WORKSPACE/cpptango --output-folder=$GITHUB_WORKSPACE/dist-cpptango
-      - name: Prepare artifacts
-        shell: bash -l {0}
-        run: |
-          mkdir $GITHUB_WORKSPACE/artifacts
-          cp $GITHUB_WORKSPACE/dist-idl/linux-64/tango-idl*.bz2 $GITHUB_WORKSPACE/artifacts/
-          cp $GITHUB_WORKSPACE/dist-cpptango/linux-64/cpptango*.bz2 $GITHUB_WORKSPACE/artifacts/
-          ls -l $GITHUB_WORKSPACE/artifacts
+          conda build $GITHUB_WORKSPACE/tango-idl --output-folder=$GITHUB_WORKSPACE/dist
       - name: Upload tango-idl Conda Package as artifact
         uses: actions/upload-artifact@v2
         with:
           name: tango-idl-linux-64-conda-package
-          path: artifacts/tango-idl*.bz2
+          path: dist/linux-64/tango-idl*.bz2
+      - name: Build cpptango Conda package
+        shell: bash -l {0}
+        run: |
+          conda build $GITHUB_WORKSPACE/cpptango --output-folder=$GITHUB_WORKSPACE/dist
       - name: Upload cpptango Conda Package as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: cpptango-idl-linux-64-conda-package
-          path: artifacts/cpptango*.bz2
-
+          name: cpptango-linux-64-conda-package
+          path: dist/linux-64/cpptango*.bz2
+      - name: Build tango-test Conda package
+        shell: bash -l {0}
+        run: |
+          conda build $GITHUB_WORKSPACE/tango-test --output-folder=$GITHUB_WORKSPACE/dist
+      - name: Upload tango-test Conda Package as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: tango-test-linux-64-conda-package
+          path: dist/linux-64/tango-test*.bz2
