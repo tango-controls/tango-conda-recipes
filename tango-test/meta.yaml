@@ -9,7 +9,7 @@ source:
   git_rev: {{ version }}
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -20,8 +20,9 @@ requirements:
     - cppzmq
     - cpptango
   run:
-    - {{ pin_compatible('omniorb') }}
-    - {{ pin_compatible('cpptango') }}
+    - {{ pin_compatible ('cpptango', min_pin='x.x', max_pin='x.x') }}
+    - {{ pin_compatible ('omniorb', min_pin='x.x', max_pin='x.x') }}
+    - {{ pin_compatible ('zeromq', min_pin='x.x', max_pin='x.x') }}
 
 about:
   home: https://www.tango-controls.org
