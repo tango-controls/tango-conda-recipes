@@ -1,8 +1,8 @@
-{% set version = "9.3.4-rc6" %}
+{% set version = "tango-9-lts" %}
 
 package:
   name: cpptango
-  version: "9.3.4rc6"
+  version: "9.4rc0"
 
 source:
   git_url: https://github.com/tango-controls/cppTango.git
