@@ -1,4 +1,4 @@
-{% set version = "3.0" %}
+{% set version = "3.1" %}
 
 package:
   name: tango-test
@@ -9,7 +9,7 @@ source:
   git_rev: {{ version }}
 
 build:
-  number: 2
+  number: 0
 
 requirements:
   build:
