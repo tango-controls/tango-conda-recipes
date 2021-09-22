@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://sourceforge.net/projects/tango-cs/files/tango-{{ version }}.tar.gz
-  url: https://github.com/tango-controls/TangoSourceDistribution/releases/download/{{ version }}/tango-{{ version }}.tar.gz
+  url: https://gitlab.com/tango-controls/TangoSourceDistribution/-/archive/{{ version }}/TangoSourceDistribution-{{ version }}.tar.gz
 requirements:
   build:
     - libtool
